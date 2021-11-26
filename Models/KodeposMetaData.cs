@@ -21,20 +21,20 @@ namespace MST.Net.Models
         public string kode { get; set; }
 
         [Required(ErrorMessage = "Kelurahan is required")]
-        [StringLength(15, ErrorMessage = "Kelurahan length Should be less than 50")]
+        [StringLength(50, ErrorMessage = "Kelurahan length Should be less than 50")]
         public string kelurahan { get; set; }
 
         [Required(ErrorMessage = "Kelurahan is required")]
-        [StringLength(15, ErrorMessage = "Kecamatan length Should be less than 50")]
+        [StringLength(50, ErrorMessage = "Kecamatan length Should be less than 50")]
         public string kecamatan { get; set; }
         public bool type_kab { get; set; }
 
         [Required(ErrorMessage = "Kelurahan is required")]
-        [StringLength(15, ErrorMessage = "Kabupaten length Should be less than 50")]
+        [StringLength(50, ErrorMessage = "Kabupaten length Should be less than 50")]
         public string kabupaten { get; set; }
 
         [Required(ErrorMessage = "Kelurahan is required")]
-        [StringLength(15, ErrorMessage = "Provinsi length Should be less than 50")]
+        [StringLength(50, ErrorMessage = "Provinsi length Should be less than 50")]
         public string provinsi { get; set; }
     }
 }
