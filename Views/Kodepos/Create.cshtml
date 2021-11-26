@@ -1,0 +1,87 @@
+﻿@model MST.Net.Models.Kodepos
+
+@{
+    ViewBag.Title = "Tambah Data";
+}
+
+<h2>Tambah Data</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()<div class="form-horizontal">
+        <h4>Kodepos</h4>
+        <hr />
+        @if (!String.IsNullOrEmpty(ViewBag.StatusMessages)) {
+            <label class = "text-danger">
+            @ViewBag.StatusMessages
+            </label>
+        }
+        <div class="form-group">
+            @Html.LabelFor(model => model.kode, "Kodepos", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.kode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.kode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.kelurahan, "Kelurahan", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.kelurahan, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.kelurahan, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.kecamatan, "Kecamatan", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.kecamatan, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.kecamatan, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Jenis Kab.</label>
+            <div class="col-md-10">
+                <div class="checkbox">
+                    <select class="form-control list-box tri-state" id="type_kab" name="type_kab">
+                        <option value="true" selected="selected">Kab.</option>
+                        <option value="false">Kota</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.type_kab, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.kabupaten, "Kabupaten", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.kabupaten, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.kabupaten, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.provinsi, "Provinsi", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.provinsi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.provinsi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Simpan" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Kembali ke Tabel", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

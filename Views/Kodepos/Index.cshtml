@@ -1,0 +1,76 @@
+﻿
+@model PagedList.IPagedList<MST.Net.Models.Kodepos>
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Kode Pos</h2>
+
+<p>
+    @Html.ActionLink("Tambah Data", "Create")
+</p>
+
+@using (Html.BeginForm("Index", "Kodepos", FormMethod.Get))
+{
+    @Html.AntiForgeryToken()
+<p>
+    Prov: @Html.TextBox("Search_Prov", ViewBag.FilterProv as string) 
+    Kab: @Html.TextBox("Search_Kab", ViewBag.FilterKab as string)
+    <input type="submit" value="Find" class="btn btn-default"/>
+</p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Kodepos", "Index", new { Sorting_Order = "Kodepos", Search_Prov = ViewBag.FilterProv, Search_Kab = ViewBag.FilterKab })
+        </th>
+        <th>
+            @Html.ActionLink("Kelurahan", "Index", new { Sorting_Order = "Kelurahan", Search_Prov = ViewBag.FilterProv, Search_Kab = ViewBag.FilterKab })
+        </th>
+        <th>
+            @Html.ActionLink("Kecamatan", "Index", new { Sorting_Order = "Kecamatan", Search_Prov = ViewBag.FilterProv, Search_Kab = ViewBag.FilterKab })
+        </th>
+        <th>
+            @Html.ActionLink("Kabupaten", "Index", new { Sorting_Order = "Kabupaten", Search_Prov = ViewBag.FilterProv, Search_Kab = ViewBag.FilterKab })
+        </th>
+        <th>
+            @Html.ActionLink("Provinsi", "Index", new { Sorting_Order = "Provinsi", Search_Prov = ViewBag.FilterProv, Search_Kab = ViewBag.FilterKab })
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.kode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.kelurahan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.kecamatan)
+            </td>
+            <td>
+                @(item.type_kab == true ? "Kab." : "Kota.") @Html.DisplayFor(modelItem => item.kabupaten)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.provinsi)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, Page_No => Url.Action("Index",
+    new { Page_No, Sorting_Order = ViewBag.CurrentSortOrder, Search_Prov = ViewBag.FilterProv, Search_Kab = ViewBag.FilterKab }))

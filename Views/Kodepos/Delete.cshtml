@@ -1,0 +1,72 @@
+﻿@model MST.Net.Models.Kodepos
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Kodepos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.kode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.kode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.kelurahan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.kelurahan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.kecamatan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.kecamatan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.type_kab)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.type_kab)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.kabupaten)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.kabupaten)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.provinsi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.provinsi)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
